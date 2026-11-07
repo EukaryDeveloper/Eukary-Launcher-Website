@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>真核启动器 · Eukary Launcher</title>
+<meta name="description" content="用 C# 写的开源 Minecraft Java 版第三方启动器。核心轻量稳定，插件如同细胞器自由挂载。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' fill='none' stroke='%232e7d32' stroke-width='3'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%232e7d32'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<style>
+  nav a.item[data-page="home"] { color: var(--accent); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="brand" href="index.html">
+      <svg width="20" height="20" viewBox="0 0 32 32"><circle cx="16" cy="16" r="12" fill="none" stroke="#2e7d32" stroke-width="3"/><circle cx="16" cy="16" r="5" fill="#2e7d32"/></svg>
+      真核启动器
+    </a>
+    <a class="item" data-page="home" href="index.html">主页</a>
+    <a class="item" data-page="download" href="download.html">下载</a>
+    <a class="item" data-page="develop" href="develop.html">开发</a>
+    <a class="item" data-page="about" href="about.html">关于</a>
+    <span class="spacer"></span>
+    <a class="gh" href="https://github.com/EukaryDeveloper/Eukary-Launcher" target="_blank" rel="noopener">
+      <svg width="17" height="17" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+      GitHub
+    </a>
+  </div>
+</nav>
+
+<main>
+  <section class="hero">
+    <span class="tag">v0.2.0 · GPL-3.0 开源</span>
+    <h1>真核启动器 · Eukary Launcher</h1>
+    <p class="lead">用 C# 写的开源 Minecraft Java 版第三方启动器。<br>核心轻量稳定，插件如同细胞器自由挂载。</p>
+    <div class="btns">
+      <a class="btn primary" href="download.html">下载 v0.2.0</a>
+      <a class="btn" href="https://github.com/EukaryDeveloper/Eukary-Launcher" target="_blank" rel="noopener">GitHub 仓库</a>
+    </div>
+  </section>
+
+  <section class="shots">
+    <figure>
+      <img src="assets/screenshot-main.png" alt="主界面截图" loading="lazy">
+      <figcaption>主界面：一键开始游戏，当前版本与加载器直接显示在按钮上</figcaption>
+    </figure>
+    <figure>
+      <img src="assets/screenshot-downloads.png" alt="下载中心截图" loading="lazy">
+      <figcaption>下载中心：原版、模组加载器与 Modrinth 模组统一下载</figcaption>
+    </figure>
+  </section>
+
+  <h2>功能</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>游戏安装与启动</h3>
+      <ul>
+        <li>支持安装 Mojang 官方全部版本：正式版、快照、远古 alpha / beta 都能下载游玩</li>
+        <li>Fabric / Forge / NeoForge / OptiFine 四种模组加载器，能共存的可以组合安装</li>
+        <li>内置 Modrinth 模组搜索与安装，安装前自动校验兼容性</li>
+        <li>Java 全自动：缺哪个版本就自动下载哪个</li>
+        <li>输入用户名即可离线游玩单机</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>下载管理</h3>
+      <ul>
+        <li>多任务并发下载，支持暂停、继续、取消和失败重试</li>
+        <li>默认国内镜像（BMCLAPI），失败自动回退官方源</li>
+        <li>支持断点续传，下载完成、出错都有通知提醒</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>版本管理</h3>
+      <ul>
+        <li>多游戏文件夹，文件夹可自定义显示名</li>
+        <li>版本隔离：每个版本独立的存档、资源包与配置目录</li>
+        <li>版本选择页集中管理已装版本：切换、删除、文件夹改名</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>界面</h3>
+      <ul>
+        <li>主页一键开始游戏，当前版本与加载器直接显示在按钮上</li>
+        <li>实时滚动显示游戏日志</li>
+        <li>全站统一的流畅动效与信息流布局</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>系统要求</h2>
+  <table>
+    <tr><th>项目</th><th>要求</th></tr>
+    <tr><td>操作系统</td><td>Windows 10 1607 及以上，64 位</td></tr>
+    <tr><td>运行时</td><td>无需安装 .NET，安装包自包含</td></tr>
+    <tr><td>Java</td><td>无需手动安装，启动器按需自动下载</td></tr>
+  </table>
+
+  <h2>里程碑</h2>
+  <table>
+    <tr><th>里程碑</th><th>内容</th><th>状态</th></tr>
+    <tr><td>M1</td><td>最小可用：装原版、启动、看日志</td><td>✅ v0.1.0</td></tr>
+    <tr><td>M2</td><td>微软正版登录</td><td>🚧 进行中</td></tr>
+    <tr><td>M3</td><td>下载中心：原版 / 加载器 / 模组 / 队列</td><td>🟡 主体功能已可用</td></tr>
+    <tr><td>M4</td><td>整合包导入与安装</td><td>⬜</td></tr>
+    <tr><td>M5</td><td>Forge / NeoForge / OptiFine 安装、Java 自动下载</td><td>✅</td></tr>
+    <tr><td>M6</td><td>主题</td><td>⬜</td></tr>
+    <tr><td>M7</td><td>发布：自动更新、崩溃报告</td><td>⬜</td></tr>
+    <tr><td>M8</td><td>插件系统</td><td>⬜</td></tr>
+  </table>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <p><a href="https://github.com/EukaryDeveloper/Eukary-Launcher" target="_blank" rel="noopener">Eukary Launcher</a> 以 GPL-3.0 协议开源 · 由 DL_Hachi 开发</p>
+    <p>本启动器与 Microsoft / Mojang 无任何关联。Minecraft 是 Mojang Synergies AB 的商标。</p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>关于 · 真核启动器</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' fill='none' stroke='%232e7d32' stroke-width='3'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%232e7d32'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<style>
+  nav a.item[data-page="about"] { color: var(--accent); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="brand" href="index.html">
+      <svg width="20" height="20" viewBox="0 0 32 32"><circle cx="16" cy="16" r="12" fill="none" stroke="#2e7d32" stroke-width="3"/><circle cx="16" cy="16" r="5" fill="#2e7d32"/></svg>
+      真核启动器
+    </a>
+    <a class="item" data-page="home" href="index.html">主页</a>
+    <a class="item" data-page="download" href="download.html">下载</a>
+    <a class="item" data-page="develop" href="develop.html">开发</a>
+    <a class="item" data-page="about" href="about.html">关于</a>
+    <span class="spacer"></span>
+    <a class="gh" href="https://github.com/EukaryDeveloper/Eukary-Launcher" target="_blank" rel="noopener">
+      <svg width="17" height="17" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+      GitHub
+    </a>
+  </div>
+</nav>
+
+<main>
+  <h1>关于</h1>
+  <p class="lead">真核启动器（Eukary Launcher，缩写 EKL）是一个用 C# 写的开源 Minecraft Java 版第三方启动器。核心轻量稳定，插件如同细胞器自由挂载。</p>
+
+  <h2>软件信息</h2>
+  <table>
+    <tr><th>项目</th><th>内容</th></tr>
+    <tr><td>软件名称</td><td>真核启动器 · Eukary Launcher（EKL）</td></tr>
+    <tr><td>当前版本</td><td>v0.2.0（2026-11-07 发布）</td></tr>
+    <tr><td>平台</td><td>Windows 10 1607 及以上、64 位</td></tr>
+    <tr><td>技术栈</td><td>WPF · .NET 8 (LTS) · CommunityToolkit.Mvvm · System.Text.Json</td></tr>
+    <tr><td>开源协议</td><td><a href="https://github.com/EukaryDeveloper/Eukary-Launcher/blob/main/LICENSE" target="_blank" rel="noopener">GPL-3.0</a></td></tr>
+    <tr><td>源码仓库</td><td><a href="https://github.com/EukaryDeveloper/Eukary-Launcher" target="_blank" rel="noopener">github.com/EukaryDeveloper/Eukary-Launcher</a></td></tr>
+  </table>
+
+  <h2>开发者</h2>
+  <p>项目由 <strong>DL_Hachi</strong> 创建并维护，欢迎以 Issue、文档或代码的形式参与——参与方式见<a href="develop.html">开发</a>页面。</p>
+  <ul class="plain">
+    <li>报告问题：<a href="https://github.com/EukaryDeveloper/Eukary-Launcher/issues" target="_blank" rel="noopener">GitHub Issues</a></li>
+    <li>交流讨论：<a href="https://github.com/EukaryDeveloper/Eukary-Launcher/discussions" target="_blank" rel="noopener">GitHub Discussions</a></li>
+  </ul>
+
+  <h2>致谢</h2>
+  <ul class="plain">
+    <li><a href="https://bmclapi2.bangbang93.com/" target="_blank" rel="noopener">BMCLAPI</a> —— 默认游戏文件下载镜像</li>
+    <li><a href="https://adoptium.net/" target="_blank" rel="noopener">Eclipse Adoptium</a> —— 自动下载的 Java 运行时来源</li>
+    <li><a href="https://modrinth.com/" target="_blank" rel="noopener">Modrinth</a> —— 模组搜索与安装的数据来源</li>
+  </ul>
+
+  <h2>免责声明</h2>
+  <div class="warn">
+    <p>本启动器与 Microsoft / Mojang 无任何关联。Minecraft 是 Mojang Synergies AB 的商标，本项目不为商标权利人所有、亦未经其认可。</p>
+    <p>本启动器不打包、不分发任何 Minecraft 游戏文件，所有游戏内容在用户本地运行时从官方源或 BMCLAPI 镜像下载。</p>
+  </div>
+
+  <h2>许可证</h2>
+  <p>本项目以 <a href="https://github.com/EukaryDeveloper/Eukary-Launcher/blob/main/LICENSE" target="_blank" rel="noopener">GPL-3.0</a> 授权发布。</p>
+  <pre><code>Copyright (C) 2026 DL_Hachi
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.</code></pre>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <p><a href="https://github.com/EukaryDeveloper/Eukary-Launcher" target="_blank" rel="noopener">Eukary Launcher</a> 以 GPL-3.0 协议开源 · 由 DL_Hachi 开发</p>
+    <p>本启动器与 Microsoft / Mojang 无任何关联。Minecraft 是 Mojang Synergies AB 的商标。</p>
+  </div>
+</footer>
+
+</body>
+</html>

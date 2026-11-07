@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>开发 · 真核启动器</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' fill='none' stroke='%232e7d32' stroke-width='3'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%232e7d32'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<style>
+  nav a.item[data-page="develop"] { color: var(--accent); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="brand" href="index.html">
+      <svg width="20" height="20" viewBox="0 0 32 32"><circle cx="16" cy="16" r="12" fill="none" stroke="#2e7d32" stroke-width="3"/><circle cx="16" cy="16" r="5" fill="#2e7d32"/></svg>
+      真核启动器
+    </a>
+    <a class="item" data-page="home" href="index.html">主页</a>
+    <a class="item" data-page="download" href="download.html">下载</a>
+    <a class="item" data-page="develop" href="develop.html">开发</a>
+    <a class="item" data-page="about" href="about.html">关于</a>
+    <span class="spacer"></span>
+    <a class="gh" href="https://github.com/EukaryDeveloper/Eukary-Launcher" target="_blank" rel="noopener">
+      <svg width="17" height="17" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+      GitHub
+    </a>
+  </div>
+</nav>
+
+<main>
+  <h1>开发</h1>
+  <p class="lead">真核启动器欢迎二次开发。这里是上手路线、分支规范与扩展点的速览，完整文档见仓库内的二次开发指南。</p>
+
+  <h2>文档索引</h2>
+  <ul class="plain">
+    <li>📗 <a href="https://github.com/EukaryDeveloper/Eukary-Launcher/blob/main/docs/DEVELOPMENT.md" target="_blank" rel="noopener">docs/DEVELOPMENT.md</a> —— 二次开发指南：分层约定、关键数据流、常见扩展点的改法与踩坑清单</li>
+    <li>📘 <a href="https://github.com/EukaryDeveloper/Eukary-Launcher/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">CONTRIBUTING.md</a> —— 分支规范、提交格式、代码约定、自测要求</li>
+    <li>🔒 <a href="https://github.com/EukaryDeveloper/Eukary-Launcher/blob/main/SECURITY.md" target="_blank" rel="noopener">SECURITY.md</a> —— 漏洞报告流程</li>
+  </ul>
+
+  <h2>快速上手</h2>
+  <p>WPF 项目只能在 Windows 上构建，需要 .NET 8 SDK：</p>
+  <pre><code>git clone https://github.com/EukaryDeveloper/Eukary-Launcher.git
+cd Eukary-Launcher
+dotnet build EukaryLauncher.sln -c Debug
+dotnet run --project EukaryLauncher.App
+
+# 纯逻辑断言（不需要网络，秒级，改完就跑）
+dotnet run --project EukaryLauncher.Smoke
+
+# 端到端：真下载 + 真启动 1.20.4
+dotnet run --project EukaryLauncher.Smoke -- --launch 1.20.4</code></pre>
+
+  <h2>项目结构</h2>
+  <table>
+    <tr><th>项目</th><th>职责</th><th>硬性约束</th></tr>
+    <tr><td><code>EukaryLauncher.Core</code></td><td>清单解析、下载、安装、参数拼装、进程启动、加载器元数据</td><td>零 UI 依赖，路径规则集中在 <code>GamePaths</code></td></tr>
+    <tr><td><code>EukaryLauncher.App</code></td><td>WPF 界面、ViewModel、下载队列、设置持久化</td><td>颜色 / 圆角 / 字号 / 间距只从 <code>Themes/Tokens.xaml</code> 取</td></tr>
+    <tr><td><code>EukaryLauncher.Smoke</code></td><td>纯逻辑断言 + 端到端下载 / 启动</td><td>纯逻辑部分必须秒级、不联网</td></tr>
+  </table>
+  <p>判断代码该放哪：能不能在没有窗口的机器上跑通？能，就属于 Core。新能力优先在 Core 里做成可测的服务，UI 层只负责喂参数和显示进度。</p>
+
+  <h2>分支版本</h2>
+  <p><code>main</code> 是唯一主干，永远保持可构建，不直接推送，一律走 Pull Request。功能开发请按以下方式建分支：</p>
+  <table>
+    <tr><th>类型</th><th>格式</th><th>示例</th></tr>
+    <tr><td>功能</td><td><code>feat/&lt;里程碑&gt;-&lt;简述&gt;</code></td><td><code>feat/m2-msa-login</code></td></tr>
+    <tr><td>修复</td><td><code>fix/&lt;简述&gt;</code></td><td><code>fix/authcodecheck-403-fallback</code></td></tr>
+    <tr><td>文档 / 杂项</td><td><code>docs/</code>、<code>chore/</code></td><td><code>docs/website</code></td></tr>
+  </table>
+  <p>提交信息<strong>直接用一句中文说清做了什么，不加 <code>feat:</code> / <code>fix:</code> 前缀</strong>——仓库首页文件列表会显示每个文件最后一条提交信息，干净的可读性比形式化标记更重要。</p>
+
+  <h2>常见扩展点</h2>
+  <p>二次开发指南里给了每种扩展的完整步骤，这里列一个速查：</p>
+  <ul class="plain">
+    <li>给下载页加一个标签 —— 新建 TabViewModel + View，注册 DataTemplate，三处同步改 <code>DownloadsViewModel</code></li>
+    <li>支持一种新的模组加载器 —— 从 <code>LoaderService</code> 识别到安装 Job、Smoke 断言共 7 步</li>
+    <li>加一个设置项 —— <code>LauncherSettings</code> 加属性，并且一定要接到启动 / 安装链路上</li>
+    <li>加一个主页面 —— <code>NavPage</code> 枚举、导航项、页面轨道三处保持顺序一致</li>
+    <li>加一个下载源 —— 实现 <code>IMirrorService</code> 六个 URL 变换，注册到 <code>MirrorFactory.All</code></li>
+  </ul>
+  <div class="note">改视觉只动 <code>Themes/Tokens.xaml</code>；新样式组追加到 <code>Controls.xaml</code> 末尾——资源字典里的前向引用会让整个应用启动即崩。</div>
+
+  <h2>插件开发</h2>
+  <p>插件系统在项目路线图中（里程碑 M8），目标是让插件像细胞器一样自由挂载在启动器核心之上，目前尚未开放正式的插件 API。</p>
+  <p>在插件系统落地之前，参与的方式是<strong>分支二次开发</strong>：Fork 仓库、按上面的分支规范建分支，在 Core 层新增可测服务、在 App 层接 UI。Core 类库本身零 UI 依赖、职责边界清晰，就是按"未来可拆分为插件宿主"的方向设计的——现在按约定写的扩展代码，之后迁移到插件形态的成本会很低。</p>
+  <p>想做插件方向的功能但拿不准接口形态，欢迎到 <a href="https://github.com/EukaryDeveloper/Eukary-Launcher/discussions" target="_blank" rel="noopener">Discussions</a> 先聊。</p>
+
+  <h2>合规红线</h2>
+  <p>这是 Minecraft 第三方启动器的生存底线，触碰一律拒收：</p>
+  <ul class="plain">
+    <li>❌ 打包 / 分发 Minecraft 游戏本体文件</li>
+    <li>❌ 使用 Minecraft 官方 Logo、Steve / Alex 作为品牌标识</li>
+    <li>❌ 破解登录 / 伪造会话登正版服务器</li>
+    <li>❌ 硬编码别人的 Azure Client ID（微软登录必须自己申请应用）</li>
+    <li>❌ 付费墙、订阅、强制打赏</li>
+  </ul>
+  <p>提交代码即视为同意以 GPL-3.0 授权贡献给本项目。</p>
+
+  <h2>提 Issue 与 PR</h2>
+  <p>提 Bug 请带上启动器版本、Windows 版本、游戏版本、Java 版本、复现步骤与日志片段（<code>%LOCALAPPDATA%\EukaryLauncher\logs\</code>）；提新功能先说明要解决什么问题，再描述方案。PR 合并前 CI 必须全绿，完整流程见 <a href="https://github.com/EukaryDeveloper/Eukary-Launcher/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">CONTRIBUTING.md</a>。</p>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <p><a href="https://github.com/EukaryDeveloper/Eukary-Launcher" target="_blank" rel="noopener">Eukary Launcher</a> 以 GPL-3.0 协议开源 · 由 DL_Hachi 开发</p>
+    <p>本启动器与 Microsoft / Mojang 无任何关联。Minecraft 是 Mojang Synergies AB 的商标。</p>
+  </div>
+</footer>
+
+</body>
+</html>
